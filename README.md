@@ -67,6 +67,24 @@ Table2 = Summerized videos
 Each Video: IOD
 
 
+Current Goals:
+
+
+Connecting Youtube
+
+Filtering Youtube for "caption only" trending videos
+
+Connecting Gemini API to take transcripts of the trending videos 
+
+Create DB to hold the trending videos as well as its summerized text
+
+
+
+
+
+
+
+
 
 
 
