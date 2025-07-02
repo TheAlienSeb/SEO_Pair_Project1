@@ -1,4 +1,4 @@
-# Trend-Digest
+# Trend_Digest
 
 ![Icon of arrow pointing with an upwards trend](https://cdn.iconscout.com/icon/free/png-256/free-trending-icon-download-in-svg-png-gif-file-formats--up-arrow-direction-growth-user-interface-pack-icons-1502173.png "Trending Icon")
 
