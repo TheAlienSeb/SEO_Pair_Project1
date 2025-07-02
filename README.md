@@ -1,67 +1,86 @@
-## README file
-1) Name of Project
+# Trend-Digest
 
-Trend-Sifter
+![Icon of arrow pointing with an upwards trend](https://cdn.iconscout.com/icon/free/png-256/free-trending-icon-download-in-svg-png-gif-file-formats--up-arrow-direction-growth-user-interface-pack-icons-1502173.png "Trending Icon")
 
-2) What problem are you solving?
+**Your gateway to understanding what's trending on YouTube—without the clutter**
 
-A large demographic of people struggle to view the hours of footage that pile up on Youtube (deaf, non-native English speakers, neurodivergent users). Especially in an age where flashy, fast-paced videos get the most attention, it is crucial that a tool that can scrape what’s relevant and deliver it in a digestible way is created.
-(i.e. some people want a fast, easy way to experience youtube without the bloat/clickbait/flashy visuals)
+**Trend-Digest** is a CLI that fetches the top trending videos in your region in real time, and provides readable summaries for each of them. 
+We know that a large demographic of people struggle to view the hours of footage that pile up on Youtube. Especially in an age where flashy, fast-paced videos get the most attention, it is crucial that a tool can deliver relevant, digestible stories.
+(i.e. people want a fast, easy way to experience youtube without the bloat/clickbait/flashy visuals)
 
-3) Who / What does the project interface with?
+- Deaf or hard-of-hearing users  
+- Non-native English speakers  
+- Neurodivergent individuals  
+- Busy people who want quick insights
 
- People?
+---
 
-Users who want a quick run-down of what’s currently trending, users who prefer reading, along with deaf, neurodivergent, or non native english speaking users
+## Interfaces
 
-other systems? (APIs)
+### People
+- Users who prefer reading over watching
+- Users with accessibility needs
+- Anyone looking for a quick summary
 
-YouTube Data API v3 – supplies the channel profiles and statistics for trending videos
-Gemini API – converts video transcripts into short summaries
+### Systems (APIs)
 
-Hardware?
-Basic capabilities
+- **YouTube Data API V3** – supplies the channel profiles and statistics for trending videos
+- **Gemini API** – converts video transcripts into short summaries
 
-What are the inputs?
+### Hardware
+- This is all run in just your terminal!
+
+---
+
+## Inputs 
 A single CLI command called fetch/summarize
-Consider extra inputs for number of videos, region, and depth of summary
+- Will prompt user for region code (e.g. US)
+- Will prompt user for number of top trending videos (between 1 - 50)
 
+---
 
-What are the outputs?
+## Outputs
 
-Title
-Channel
-Viewer Stats
-Summary
-^ Will be printed to the terminal and saved into a database per video
+Outputs will be in the following format:
+- Title - (Channel Name) (Viewer Statistics)
+- Summary of the video
+All to be printed to the terminal and saved into a database on a video basis
 
-List 5 steps to go from input -> output
+---
 
-Fetch: Call YouTube videos.list?chart=mostPopular → get top 10 video IDs with corresponding titles/channels
-Pull captions: For each ID, fetch the video transcript
-Gemini Feed: Prepare text for Gemini, consider length of transcript and break it down as needed
-Summarize: Send chunks to Gemini, reinvoke Gemini again as needed to efficiently handle summary
-Output: Save the entry in a database, then pretty-print them in the terminal.
+## Step-by-step
 
-What’s the biggest risk?
+Here is a high level overview of how this script works:
+- Fetch: Call YouTube videos.list?chart=mostPopular → get top 10 video IDs with corresponding titles/channels
+- Pull captions: For each ID, fetch the video transcript
+- Gemini Feed: Prepare text for Gemini, consider length of transcript and break it down as needed
+- Summarize: Send chunks to Gemini, reinvoke Gemini again as needed to efficiently handle summary
+- Output: Save the entry in a database, then pretty-print them in the terminal.
 
-Need to handle videos that are excessively long and videos without transcripts/captions. How will we output and save in these cases?
+---
 
-How will you know you’re successful?
+## Program Risks
+
+How do we handle exceptionally long videos, or videos without captions? Currently, we have set to display "no captions found" in the extreme cases so as not to disrupt the output flow
+
+---
+
+## How will you know you’re successful?
 
 We will know if we have achieved our goal when we are able to print solid, coherent summaries for the correct corresponding videos. Being able to understand and get a rundown on all the videos is the ultimate use for this tool.
 
+---
 
-
-
-Two tables, one for the initial list with the first top 10. 
+## How our data is stored
+Using pandas, we will store two tables:
+First is the initial list with the initial top 10. 
 
 Table1 = TrendingList
 
-Each video: ID, Title, Views, Desc,  (The Layout)
+Each record contains: ID, Title, Views, Desc, (The Layout)
 
-
-Table2 = Summerized videos
+Next is the records of the video summaries
+Table2 = Summarized videos
 
 
 Each Video: IOD
